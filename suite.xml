@@ -1,0 +1,31 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Suite" parallel="tests" thread-count="3" >
+
+    <test name="Android-AVD">
+        <parameter name="platform" value="android"/>
+        <parameter name="udid" value="emulator-5554"/>
+        <parameter name="platformVersion" value="7.0"/>
+        <classes>
+            <class name="com.eliasnogueira.unique_script.TipTest"/>
+        </classes>
+    </test>
+
+    <test name="Android-Genymotion">
+        <parameter name="platform" value="android"/>
+        <parameter name="udid" value="192.168.56.101:5555"/>
+        <parameter name="platformVersion" value="6.0"/>
+        <classes>
+            <class name="com.eliasnogueira.unique_script.TipTest"/>
+        </classes>
+    </test>
+
+    <test name="iOS-Iphone-Simulator">
+        <parameter name="platform" value="ios"/>
+        <parameter name="udid" value="8A06182B-85B1-4AC4-B3B5-99D99E87918A"/>
+        <parameter name="platformVersion" value="10.3"/>
+        <classes>
+            <class name="com.eliasnogueira.unique_script.TipTest"/>
+        </classes>
+    </test>
+</suite>
