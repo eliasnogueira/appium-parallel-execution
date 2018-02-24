@@ -76,6 +76,11 @@ This parameters are linked to the test files using TestNG, so when you execute t
 ### About the test
 On the package _com.eliasnogueira_ you'l find the test script `TipTest.java`_ that uses the information on `config.properties` and `suite.xml`to execute the tests in Android or iOS
 
+### Have trouble?
+
+#### CapabilityNotPresentOnTheGridException
+Please, read this post: [https://medium.com/@eliasnogueira/got-capabilitynotpresentonthegridexception-66cbc1aa06b7](https://medium.com/@eliasnogueira/got-capabilitynotpresentonthegridexception-66cbc1aa06b7)
+
 ### Any question, error or feedback?
 Please fill an issue ;-)
 

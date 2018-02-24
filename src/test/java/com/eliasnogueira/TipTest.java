@@ -1,6 +1,5 @@
 package com.eliasnogueira;
 
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.testng.Assert.assertEquals;
 
 import com.eliasnogueira.po.MainScreenPageObject;

@@ -63,7 +63,6 @@ public class Utils {
             case "ios":
                 capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone Simulator");
                 capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.IOS);
-                capabilities.setCapability(MobileCapabilityType.PLATFORM, MobilePlatform.IOS);
 
                 // if iOS 9+ use XCUITest
                 if (Boolean.parseBoolean(Utils.readProperty("platform.ios.xcode8"))) {
@@ -82,7 +81,6 @@ public class Utils {
 		case "android":
             capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Emulator");
             capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
-            capabilities.setCapability(MobileCapabilityType.PLATFORM, MobilePlatform.ANDROID);
 
             if (Boolean.parseBoolean(Utils.readProperty("install.app"))) {
                 capabilities.setCapability(MobileCapabilityType.APP, new File(Utils.readProperty("app.android.path")).getAbsolutePath());

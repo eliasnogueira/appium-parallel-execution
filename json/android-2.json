@@ -3,7 +3,7 @@
   [
     {
       "browserName":"Android Marshmallow",
-      "version":"6.0",
+      "version":"7.0",
       "platform":"ANDROID",
       "maxInstances": 1
     }
@@ -21,7 +21,7 @@
     "register": true,
     "registerCycle": 1000,
     "hubPort": 4444,
-    "hubHost": "192.168.0.102",
+    "hubHost": "192.168.56.1",
     "session-override": true
   }
 }

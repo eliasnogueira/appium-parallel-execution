@@ -1,12 +1,12 @@
 
 Start the grid
-java -jar selenium-server-standalone-3.5.2.jar -role hub -hubConfig grid.json
+java -jar selenium-server-standalone-3.7..jar -role hub -hubConfig grid.json
 
 Start the first node
-appium --nodeconfig json/android-6.json -p 4723 -bp 5523 -U emulator-5554
+appium --nodeconfig json/android-1.json -p 4723 -bp 5523 --default-capabilities '{"udid":"emulator-5554"}'
 
 Start the second node
-appium --nodeconfig json/android-7.json -p 4724 -bp 5524 -U 192.168.56.101:5555
+appium --nodeconfig json/android-2.json -p 4724 -bp 5524 --default-capabilities '{"udid":"192.168.56.101:5555"}'
 
 Start thrid node
-appium --nodeconfig json/ios-10-3.json -p 4725 -bp 5525 -U 8A06182B-85B1-4AC4-B3B5-99D99E87918A
+appium --nodeconfig json/ios.json -p 4725 -bp 5525 --default-capabilities '{"udid":"3C9FB71E-9C0E-49A7-AD65-3CCCD3A50301"}'
