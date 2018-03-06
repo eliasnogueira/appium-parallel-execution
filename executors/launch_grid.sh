@@ -11,7 +11,7 @@ function new_tab() {
 }
 
 SELENIUM_SERVER_DIR="/Users/eliasnogueira/Downloads"
-SELENIUM_SERVER_FILE="selenium-server-standalone-3.9.1.jar"
+SELENIUM_SERVER_FILE="selenium-server-standalone-3.7.1.jar"
 
 
 new_tab "Grid" "java -jar $SELENIUM_SERVER_DIR/$SELENIUM_SERVER_FILE -role hub -hubConfig ../json/grid.json"

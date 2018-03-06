@@ -18,21 +18,14 @@ package com.eliasnogueira;
 import static org.testng.Assert.assertEquals;
 
 import com.eliasnogueira.po.MainScreenPageObject;
-import com.eliasnogueira.support.TestListener;
-import com.eliasnogueira.support.Utils;
+import com.eliasnogueira.support.BaseTest;
 
-import io.appium.java_client.AppiumDriver;
 import org.testng.annotations.*;
 
-@Listeners(TestListener.class)
-public class TipTest {
-
-	public AppiumDriver<?> driver;
+public class TipTest  extends BaseTest {
 
 	@Test
-    @Parameters( { "platform", "udid", "platformVersion"})
-	public void testCalculateDefaultTip(@Optional("Android") String platform, @Optional("192.168.56.101:5555") String udid, @Optional("6.0") String platformVersion) throws Exception {
-		driver = Utils.returnDriver(platform, udid, platformVersion);
+	public void testCalculateDefaultTip() {
 
 		MainScreenPageObject mainScreen = new MainScreenPageObject(driver);
 		
@@ -42,10 +35,5 @@ public class TipTest {
         assertEquals("$15.00", mainScreen.getTipAmount());
         assertEquals("$115.00", mainScreen.getTotalAmount());
 	}
-
-    @AfterTest
-    public void tearDown() {
-        driver.quit();
-    }
 
 }
