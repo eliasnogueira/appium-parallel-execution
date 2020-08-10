@@ -42,12 +42,12 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestStart(ITestResult iTestResult) {
-
+        // empty
     }
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
-
+        // empty
     }
 
     @Override
@@ -64,7 +64,7 @@ public class TestListener implements ITestListener {
 
             // the filename is the folder name on test.screenshot.path property plus the completeTestName
             FileUtils.copyFile(file,
-                    new File(configuration.screenshotPath() + "/" + composeTestName(iTestResult) + ".png"));
+                    new File(configuration.screenshotPath() + System.getProperty("file.separator") + composeTestName(iTestResult) + ".png"));
 
         } catch (NoSuchFieldException | IllegalAccessException | IOException e) {
             e.printStackTrace();
@@ -73,22 +73,22 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
-
+        // empty
     }
 
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
-
+        // empty
     }
 
     @Override
     public void onStart(ITestContext iTestContext) {
-
+        // empty
     }
 
     @Override
     public void onFinish(ITestContext iTestContext) {
-
+        // empty
     }
 
 
