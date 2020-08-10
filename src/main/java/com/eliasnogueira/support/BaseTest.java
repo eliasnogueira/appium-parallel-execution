@@ -1,10 +1,36 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2018 Elias Nogueira
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 package com.eliasnogueira.support;
 
+import com.eliasnogueira.config.Configuration;
+import com.eliasnogueira.config.ConfigurationManager;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
+import io.appium.java_client.remote.AutomationName;
 import io.appium.java_client.remote.IOSMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.remote.MobilePlatform;
@@ -23,28 +49,26 @@ public class BaseTest {
     @BeforeTest(alwaysRun = true)
     @Parameters( { "platform", "udid", "platformVersion"})
     public void beforeTest(String platform, String udid, String platformVersion) throws Exception {
+        Configuration configuration = ConfigurationManager.getConfiguration();
+
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
         capabilities.setCapability(MobileCapabilityType.UDID, udid);
         capabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion);
 
         // create the complete URL based on config.properties information
-        String completeURL = "http://" + Utils.readProperty("run.ip") + ":" + Utils.readProperty("run.port") + "/wd/hub";
+        String completeURL = "http://" + configuration.serverIp() + ":" + configuration.serverPort() + "/wd/hub";
 
         switch (platform.toLowerCase()) {
             case "ios":
-                capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone Simulator");
+                capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone 11");
                 capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.IOS);
+                capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.IOS_XCUI_TEST);
 
-                // if iOS 9+ use XCUITest
-                if (Boolean.parseBoolean(Utils.readProperty("platform.ios.xcode8"))) {
-                    capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
-                }
-
-                if (Boolean.parseBoolean(Utils.readProperty("install.app"))) {
-                    capabilities.setCapability(MobileCapabilityType.APP, new File(Utils.readProperty("app.ios.path")).getAbsolutePath());
+                if (configuration.installApp()) {
+                    capabilities.setCapability(MobileCapabilityType.APP, new File(configuration.iosAppPath()).getAbsolutePath());
                 } else {
-                    capabilities.setCapability(IOSMobileCapabilityType.APP_NAME, Utils.readProperty("app.ios.appName"));
+                    capabilities.setCapability(IOSMobileCapabilityType.APP_NAME, configuration.iosAppName());
                 }
 
                 driver = new IOSDriver<MobileElement>(new URL(completeURL), capabilities);
@@ -53,12 +77,13 @@ public class BaseTest {
             case "android":
                 capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Emulator");
                 capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, MobilePlatform.ANDROID);
+                capabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, AutomationName.ANDROID_UIAUTOMATOR2);
 
-                if (Boolean.parseBoolean(Utils.readProperty("install.app"))) {
-                    capabilities.setCapability(MobileCapabilityType.APP, new File(Utils.readProperty("app.android.path")).getAbsolutePath());
+                if (configuration.installApp()) {
+                    capabilities.setCapability(MobileCapabilityType.APP, new File(configuration.androidAppPath()).getAbsolutePath());
                 } else {
-                    capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, Utils.readProperty("app.android.appPackage"));
-                    capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, Utils.readProperty("app.android.appActivity"));
+                    capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, configuration.androidAppPackage());
+                    capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, configuration.androidAppActivity());
                 }
 
                 driver = new AndroidDriver<MobileElement>(new URL(completeURL), capabilities);
