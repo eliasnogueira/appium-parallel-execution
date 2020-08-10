@@ -1,12 +1,19 @@
 
 Start the grid
-java -jar selenium-server-standalone-3.7..jar -role hub -hubConfig grid.json
+java -jar selenium-server-standalone-3.141.59.jar -role hub -hubConfig json/grid.json
 
 Start the first node
-appium --nodeconfig json/android-1.json -p 4723 -bp 5523 --default-capabilities '{"udid":"emulator-5554"}'
+appium --nodeconfig json/android-1.json -p 4723 -bp 5523 --default-capabilities '{"udid":"emulator-5554", "systemPort": 8203}'
 
 Start the second node
-appium --nodeconfig json/android-2.json -p 4724 -bp 5524 --default-capabilities '{"udid":"192.168.56.101:5555"}'
+appium --nodeconfig json/android-2.json -p 4724 -bp 5524 --default-capabilities '{"udid":"emulator-5556", "systemPort": 8203}'
 
 Start thrid node
-appium --nodeconfig json/ios.json -p 4725 -bp 5525 --default-capabilities '{"udid":"3C9FB71E-9C0E-49A7-AD65-3CCCD3A50301"}'
+appium --nodeconfig json/ios.json -p 4725 -bp 5525 --default-capabilities '{"udid":"A311ED6A-05A8-4484-BE18-BA87A2B05F5E", "wdaLocalPort": 8204}'
+
+
+Discoveting the iPhone simulator UDID opened
+xcrun simctl list | egrep '(Booted)'
+
+List active Android devices
+adb devices

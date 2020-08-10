@@ -21,7 +21,7 @@
     "register": true,
     "registerCycle": 1000,
     "hubPort": 4444,
-    "hubHost": "192.168.56.1",
+    "hubHost": "192.168.178.44",
     "session-override": true
   }
 }
