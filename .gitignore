@@ -8,4 +8,6 @@
 # Maven
 target/
 
+# General
 *.jar
+.allure
