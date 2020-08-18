@@ -23,25 +23,23 @@
  */
 package com.eliasnogueira;
 
-import static org.testng.Assert.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
-import com.eliasnogueira.po.MainScreenPageObject;
-import com.eliasnogueira.support.BaseTest;
+import com.eliasnogueira.page_object.MainScreenPage;
+import com.eliasnogueira.test.BaseTest;
+import org.testng.annotations.Test;
 
-import org.testng.annotations.*;
+public class TipTest extends BaseTest {
 
-public class TipTest  extends BaseTest {
+    @Test
+    public void testCalculateDefaultTip() {
+        MainScreenPage mainScreen = new MainScreenPage(driver);
 
-	@Test
-	public void testCalculateDefaultTip() {
+        mainScreen.fillBillAmount("100");
+        mainScreen.clickCalculateTip();
 
-		MainScreenPageObject mainScreen = new MainScreenPageObject(driver);
-		
-		mainScreen.fillBillAmount("100");
-		mainScreen.clickCalculateTip();
-
-        assertEquals("$15.00", mainScreen.getTipAmount());
-        assertEquals("$115.00", mainScreen.getTotalAmount());
-	}
+        assertThat(mainScreen.getTipAmount()).isEqualTo("$15.00");
+        assertThat(mainScreen.getTotalAmount()).isEqualTo("$115.00");
+    }
 
 }
