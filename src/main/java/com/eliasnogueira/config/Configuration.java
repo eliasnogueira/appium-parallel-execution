@@ -36,7 +36,7 @@ import org.aeonbits.owner.Config.LoadType;
 public interface Configuration extends Config {
 
     @Key("install.app")
-    boolean installApp();
+    Boolean installApp();
 
     @Key("run.ip")
     String serverIp();
@@ -58,7 +58,4 @@ public interface Configuration extends Config {
 
     @Key("app.android.appActivity")
     String androidAppActivity();
-
-    @Key("test.screenshot.path")
-    String screenshotPath();
 }
