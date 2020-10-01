@@ -1,7 +1,28 @@
 # Appium parallel test execution
 A lean, up-to-date, and cross-platform solution to run your mobile tests into a Selenium Grid using Appium.
 
-## How you can use this repo?
+* [How you can use this repo](#how-you-can-use-this-repo)
+* [Technical Decisions](#technical-decisions)
+   * [Languages and Frameworks](#languages-and-frameworks)
+   * [Test architecture](#test-architecture)
+* [Pre-conditions](#pre-conditions)
+   * [What you need](#what-you-need)
+      * [Android specific](#android-specific)
+         * [Configurations](#configurations)
+         * [Inspect elements on Android](#inspect-elements-on-android)
+      * [iOS specific](#ios-specific)
+         * [Configurations](#configurations-1)
+         * [Inspect elements on iOS](#inspect-elements-on-ios)
+* [About the apps](#about-the-apps)
+* [How to run the tests](#how-to-run-the-tests)
+   * [Pre-conditions](#pre-conditions-1)
+   * [Appium](#appium)
+   * [Project execution](#project-execution)
+   * [About the test](#about-the-test)
+   * [Having trouble?](#having-trouble)
+   * [Any question, error or feedback?](#any-question-error-or-feedback)
+
+## How you can use this repo
 You can use this repo as a start point to implement your own cross-platform parallel execution in a grid.
 It uses different libraries and design pater to make it lean, easy to maintain and extend.
 
@@ -27,12 +48,12 @@ We know that any automation project starting with a good test architecture.
 This project can be your initial test architecture for a faster start.
 You will see the following items in this architecture:
 
-* [Page Objects pattern](#page-objects-pattern)
-* [Factory](#factory)
-* [BaseTest](#basetest)
-* [Logging](#logging)
-* [Configuration files](#configuration-files)
-* [Parallel execution](#parallel-execution)
+* Page Objects pattern
+* Factory
+* BaseTest
+* Logging
+* Configuration files
+* Parallel execution
 
 ## Pre-conditions
 
@@ -69,7 +90,7 @@ To execute the examples over the iOS platform you'l need:
 * iPhone simulator (I recommend, for these tests iOS version > 10)
 * Follow all the steps on [https://github.com/appium/appium-xcuitest-driver](https://github.com/appium/appium-xcuitest-driver)
 
-##### Inspect elementos on iOS
+##### Inspect elements on iOS
 You also can use [Appium Desktop](https://github.com/appium/appium-desktop)
 or you can use the [Macaca App Inspector](https://macacajs.github.io/app-inspector/)
 
@@ -111,13 +132,13 @@ This parameters are linked to the test files using TestNG, so when you execute t
 ### About the test
 On the package `com.eliasnogueira` you'll find the test script `TipTest.java` that uses the information on `config.properties` and `suite.xml`to execute the tests in Android or iOS
 
-### Have trouble?
+### Having trouble?
 
 #### CapabilityNotPresentOnTheGridException
 Please, read this post: [https://medium.com/@eliasnogueira/got-capabilitynotpresentonthegridexception-66cbc1aa06b7](https://medium.com/@eliasnogueira/got-capabilitynotpresentonthegridexception-66cbc1aa06b7)
 
 ### Any question, error or feedback?
-Please fill an issue ;-)
+Please fill an [issue](https://github.com/eliasnogueira/appium-parallel-execution/issues)
 
 
 
