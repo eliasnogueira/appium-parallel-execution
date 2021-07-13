@@ -84,7 +84,7 @@ You can use the [uiautomatorviewer](https://developer.android.com/training/testi
 #### iOS specific
 
 ##### Configurations
-To execute the examples over the iOS platform you'l need:
+To execute the examples over the iOS platform you'll need:
 * MacOS machine :-)
 * Xcode installed
 * iPhone simulator (I recommend, for these tests iOS version > 10)
@@ -127,7 +127,7 @@ Each _test_ have 3 parameters:
 * udid
 * platformVersion
 
-This parameters are linked to the test files using TestNG, so when you execute the suite.xml file all these parameters will be used on test file.
+These parameters are linked to the test files using TestNG, so when you execute the suite.xml file all these parameters will be used on test file.
    
 ### About the test
 On the package `com.eliasnogueira` you'll find the test script `TipTest.java` that uses the information on `config.properties` and `suite.xml`to execute the tests in Android or iOS
